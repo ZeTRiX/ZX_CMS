@@ -1,0 +1,230 @@
+body {
+	margin: 0;
+	padding: 0;
+	font-family: Arial, sans-serif;
+	font-size: 10px;
+	color: #333;
+	background: #21364e url(/templates/default/diz/bg.gif) center 0;
+}
+a {
+	text-decoration: none;
+	color: #3a8099;
+}
+a:hover {
+	text-decoration: underline;
+}
+header, footer {
+	display: block;
+}
+p {
+	padding: 0;
+	margin: 0 0 0.5em 0;
+}
+h1 {
+	font-size: 18px;
+	font-weight: bold;
+	color: #555;
+	text-shadow: 0 1px #fff;
+	margin: 0;
+	padding: 0 0 3px 8px;
+}
+h2 {
+	font-size: 14px;
+	font-weight: bold;
+	margin: 0 0 8px 0;
+	padding: 0;
+}
+
+#wrapper {
+	width: 988px;
+	margin: 0 auto;
+}
+#top_bg {
+	float: left;
+	height: 116px;
+	background: url(/templates/default/diz/top_bg.png) 0 bottom no-repeat;
+	padding: 0;
+	margin: 0 0 8px 0;
+	width: 988px;
+}
+.pages
+{
+font-size:20px;
+}
+.clear {
+	clear: both;
+	font-size: 1px;
+	height: 1px;
+}
+#main {
+	width: 100%;
+	float: left;
+	background: url(/templates/default/diz/mtop.png) 0 0 no-repeat;
+	padding: 5px 0 0 0;
+}
+#content {
+	width: 100%;
+	float: right;
+	background: url(/templates/default/diz/mtile.png) 0 0 repeat-y;
+	padding: 4px 0 0 0;
+}
+#l-column {
+	float: left;
+	width: 162px;
+	padding-left: 9px;
+	margin: 0 9px 11px 0;
+}
+#center_column {
+	float: right;
+	width: 494px;
+	margin: 0 9px 11px 0;
+}
+#ctr_cont {
+	width: 95%;
+	float: left;
+	background: #fff url(/templates/default/diz/ctr_cont_bg.png) repeat-x;
+	padding: 10px 8px 30px 8px;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
+#right_column {
+	float: left;
+	width: 296px;
+	margin-bottom: 9px;
+}
+#cc_wide {
+	float: right;
+	width: 800px;
+	border-radius: 3px 3px 0 0;
+	-moz-border-radius: 3px 3px 0 0;
+	-webkit-border-radius: 3px 3px 0 0;
+}
+#cc_wide h1 {
+	padding-bottom: 6px;
+}
+.sidebar {
+	font-size: 14px;
+	font-weight: bold;
+	background: #262b2e url(/templates/default/diz/bg.gif) center 0;
+	color: #c3dae0;
+	text-align: center;
+	padding: 2px;
+	margin: 0 0 6px 0;
+	border-radius: 8px;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	width: 140px;
+	float: left;
+}
+.sideback {
+	background: #fff url(/templates/default/diz/ctr_cont_bg.png) repeat-x;
+	padding: 1px;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	font-size: 12px;
+	color: #62757a;
+	text-align: center;
+	padding: 8px;
+	margin: 0 0 6px 0;
+	width: 146px;
+	float: left;
+}
+#top_menu {
+	float: right;
+	width: 300px;
+	height: 44px;
+	margin: 0 0 6px 0;
+	padding: 34px 0 0 0;
+	font-size: 14px;
+	text-align: center;
+	background: url(/templates/default/diz/top_menu.png) 0 bottom repeat-x;
+	color: #fff;
+}
+#top_menu a {
+	color: #fff;
+}
+#top_menu .dot {
+	margin: 0 6px;
+}
+#cc_wide .m_menu {
+	width: 98%;
+	float: right;
+}
+.m_menu1 {
+	float: left;
+	color: #fff;
+	font-weight: bold;
+	font-size: 12px;
+	text-decoration: none;
+	text-shadow: #333 0 1px;
+	width: 97px;
+	height: 25px;
+	line-height: 25px;
+	vertical-align: middle;
+	text-align: center;
+	overflow: hidden;
+	margin-right: 2px;
+	background: url(/templates/default/diz/m_menu1.png) 0 0 no-repeat;
+	outline: none;
+}
+a.m_menu1:hover {
+	text-decoration: none;
+}
+a.m_menu1:hover:not(.active) {
+	background-position: 0 -25px;
+}
+.m_menu1 .active {
+	color: #333;
+	text-shadow: #fff 0 1px;
+	background-position: 0 -50px;
+}
+.m_menu1 .first {
+	margin-right: 3px;
+}
+.m_menu1 .last {
+	margin: 0;
+}
+#news {
+    width: 95%;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+#newsimg{
+	background-image: url(/templates/default/diz/bgn_grey.png);
+	background-position: 100% 100%;
+	background-repeat: no-repeat;
+	display: inline-block;
+	margin-right: 8px;
+	padding:5px 8px 8px 5px;
+	position: relative;
+	vertical-align: top;
+}
+#nwhead { 
+background: #c1c9c8;
+color: #164c59;
+border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+border: 1px solid #000;
+margin: 0px 0px 7px;
+overflow: hidden;
+padding: 0px 15px;
+}
+#nwcont { 
+background: #e8e8e8;
+font-size: 12px;
+border-bottom: 2px solid #CBC6B8;
+border-radius: 8px;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+border: 1px solid #000;
+padding: 10px 15px;
+}
+#footer{
+	width: 100%;
+	float: left;
+	background: url(/templates/default/diz/mbottom.png) 0 0 no-repeat;
+	padding: 5px 0 0 0;
+}
