@@ -6,7 +6,8 @@
 </head>
 <body>
 <div align="center">
-<? if (filesize('dbconfig.php') == 0) { ?>
+<? $dbfile = fopen($_SERVER['DOCUMENT_ROOT'].'/engine/dbconfig.php', 'r');
+if(fgetc($dbfile) === false) { ?>
 <h2>Установка RZ_Engine: Введите данные</h2>
 <form action='install.php' method=post>
 <table align="center">
@@ -142,6 +143,7 @@ echo "<div align=\"center\" style=\"width:30%;\"><div style=\"float:left\"><a hr
 
 } else {echo '<br /><br /><p align="center" style="color:red; font-weight:20px;">RZ_Engine уже установлен. Можете удалить файл устанощика.</p><br />';
 echo '<p align="center" style="color:red; font-weight:16px;">Для повторной установке очистите файл <b>dbconfig.php</b></p>';}
+fclose($dbfile);
 ?>
 </div>
 </body>

@@ -17,14 +17,15 @@ This file is part of RZ_Engine. RZ_Engine is a simple CMS (Content Management Sy
     You should have received a copy of the GNU General Public License
     along with RZ_Engine.  If not, see <http://www.gnu.org/licenses/>.
 **************************************************/
-if (filesize($_SERVER['DOCUMENT_ROOT'].'/engine/dbconfig.php') == 0) {
-header('Location: /engine/install.php');
-} else {
+$dbfile = fopen($_SERVER['DOCUMENT_ROOT'].'/engine/dbconfig.php', 'r');
+if(fgetc($dbfile) === false) {
+    header('Location: /engine/install.php');
+}
+fclose($dbfile);
 
 include ($_SERVER['DOCUMENT_ROOT'].'/engine/dbconfig.php');
 include ($_SERVER['DOCUMENT_ROOT'].'/admin/dizconfig.php');
-include ($_SERVER['DOCUMENT_ROOT'].'/engine/head.php');
-include ($_SERVER['DOCUMENT_ROOT'].'/engine/news.php');
+include ($_SERVER['DOCUMENT_ROOT'].'/engine/functions.php');
 
 $rze_urlexp=explode('?',$_SERVER['REQUEST_URI']); 
 $rze_mainurl=$rze_urlexp[0]; 
@@ -43,5 +44,4 @@ require ($_SERVER['DOCUMENT_ROOT'].'/templates/'.$skin.'/content.tpl');
 echo $pages[TEXT];
 require ($_SERVER['DOCUMENT_ROOT'].'/templates/'.$skin.'/footer.tpl'); }
 
-}
 ?>
