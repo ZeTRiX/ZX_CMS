@@ -25,16 +25,21 @@ $action=mysql_real_escape_string(@$_GET[action]);
 $action=htmlspecialchars($action,ENT_QUOTES,"utf-8");
 $warn[0] = "UPDATE";$warn[1] = "SELECT";$warn[2] = "DELETE";
 $action=str_replace($warn,"",$action);
-
-$id=mysql_real_escape_string(@$_GET[id]); 
-$id=intval($id);
+$id=mysql_real_escape_string(intval(@$_GET[id]));
 
 include ($_SERVER['DOCUMENT_ROOT'].'/admin/skin/default/header.tpl');
 
 if ($_GET[action]=='del')
     { 
         $sqldel=mysql_query("DELETE FROM rze_structure WHERE ID='".$id."'"); 
-        echo '<b><span style="color:red">Страница удалена.</span></b><br>'; 
+		echo '<script>alert("Страница успешно удалена.");</script>';
+		$redirurl = '/admin/pages/';
+		echo "<script language=\"JavaScript\">\n";
+		echo "<!-- \n\n";
+		echo "function redirect() { window.location = \"" . $redirurl . "\"; }\n";
+		echo "timer = setTimeout('redirect()', '" . ($seconds*1) . "');\n\n";
+		echo "-->\n";
+		echo "</script>\n";
     } 
 ?>
 

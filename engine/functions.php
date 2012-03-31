@@ -53,8 +53,9 @@ do{
     echo '<tr><td>';
     echo '<div id="nwhead"><div style="float:left;font-size:16px;"><b>'.$mainsel[NAME].'</b></div>
 	<div style="float:right;font-size:14px;">Дата добавления: '.$mainsel[stamp].'</div></div>';
-    echo '<div id="nwcont"><div id="newsimg"><img src="'.$mainsel["IMG"].'" /></div><br /><br />
-	'.$mainsel[SHORTTEXT].'<br /><br /><div id="nwcont"><a href="/engine/news.php?id='.$mainsel[ID].'"><div style="color:#32b9ff;">Подробнее -></div></a></div>';
+    echo '<div id="nwcont">';
+	if ($mainsel[IMG] != NULL){ echo '<div id="newsimg"><img src="'.$mainsel["IMG"].'" /></div><br />'; }
+	echo '<br />'.$mainsel[SHORTTEXT].'<br /><br /><div id="nwcont"><a href="/engine/news/'.$mainsel[ID].'"><div style="color:#32b9ff;">Подробнее -></div></a></div>';
 	echo '</td></tr>';
 	}
 while ($mainsel = mysql_fetch_array($postsel));
@@ -75,7 +76,6 @@ if($page + 1 <= $total) $page1right = ' | <a href=?page='. ($page + 1) .'>'. ($p
 
 // Выводим панель переключения
 echo $pervpage.$page2left.$page1left.'<b>'.$page.'</b>'.$page1right.$page2right.$nextpage;
-}
-else{echo "<p>Новостей ещё нету.</p>";}
+} else { echo "<p>Новостей ещё нету.</p>"; }
 }
 ?>

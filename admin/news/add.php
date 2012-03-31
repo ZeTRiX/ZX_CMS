@@ -21,21 +21,26 @@ include ($_SERVER['DOCUMENT_ROOT'].'/engine/dbconfig.php');
 session_start();
 if (isset($_SESSION['connect'])) {
 
-$action=mysql_real_escape_string($_GET[action]); 
-$id=mysql_real_escape_string($_GET[id]);
+if (isset($_POST['addn'])) {
 
-if ($_POST){
+$randz = rand(9, 90000);
+$uploaddir = ($_SERVER['DOCUMENT_ROOT'].'/uploads/posts/');
+if (move_uploaded_file($_FILES['n_IMG']['tmp_name'], $uploaddir.$randz.'_'.$_FILES['n_IMG']['name'])) {
+    echo '<b><span style="color:red">Картинка загружена</span></b>, '; } else { echo '<b><span style="color:red">Новость будет без картинки!</span></b><br />'; }
+
 	$n_name=mysql_real_escape_string($_POST[n_NAME]); 
     $n_shorttext=mysql_real_escape_string($_POST[n_SHORTTEXT]); 
     $n_text=mysql_real_escape_string($_POST[n_TEXT]);
-	$n_img=mysql_real_escape_string($_POST[n_IMG]);
-    if ($n_name != NULL && $n_shorttext != NULL && $n_text != NULL && $n_img != NULL)
+	if(!$_FILES["n_IMG"]) { $n_img=mysql_real_escape_string(NULL); } else {
+    $n_img=mysql_real_escape_string('/uploads/posts/'.$randz.'_'.$_FILES["n_IMG"]["name"]); }
+	
+    if ($n_name != NULL && $n_shorttext != NULL && $n_text != NULL)
     {
         $newsadd=mysql_query("INSERT INTO `rze_news` (`NAME`,`SHORTTEXT`,`TEXT`,`IMG`)
 		VALUES ('".$n_name."', '".$n_shorttext."', '".$n_text."', '".$n_img."')");
-        echo '<b><span style="color:red">Страница добавлена.</span></b><br>'; 
+        echo '<b><span style="color:red">Новость добавлена.</span></b><br>';
     }
-	else {echo'<b><span style="color:red">Все поля должны быть заполнены.</span></b><br>';}
+	else {echo'<b><span style="color:red">Все поля должны быть заполнены.</span></b><br />';}
 }
 ?>
 <!doctype html>
@@ -53,7 +58,7 @@ if ($_POST){
 </html>
 
 <center>
-<form name="news_add" method="post" action="add.php">
+<form enctype="multipart/form-data" name="news_add" method="post" action="add.php">
 <table border=1 width="1000">
     <tr>
         <td style="padding:2px;"><b>Название:</b></td>
@@ -66,21 +71,25 @@ if ($_POST){
 	</tr>
     <tr>
         <td style="padding:2px;"><b>Полный текст новости:</b></td>
-        <td style="padding-left:2px;"><textarea id="n_TEXT" name="n_TEXT" rows=20 class="edit bk"></textarea>
+        <td style="padding-left:2px;"><textarea id="n_TEXT" name="n_TEXT" rows=15 class="edit bk"></textarea>
         <script type="text/javascript">$(document).ready(function(){$('#n_TEXT').redactor();});</script></td>
-	</tr>
-	<tr>
-        <td height="29" style="padding-left:5px;"><b>Адрес картинки для новости:</b></td>
-        <td><input name="n_IMG" type="text" style="width:388px;" class="edit bk"></td>
     </tr>
 	<tr><td colspan="2"><div class="unterline"></div></td></tr>
+	  <tr>
+      <td height="29" style="padding-left:5px;"><b>Картинки для новости (загружать перед добавлнием текст):</b></td>
+      <td>
+	  <input type="hidden" name="MAX_FILE_SIZE" value="3000000">
+      <input type="file" name="n_IMG"><br>
+      </td>
+    </tr>
 </table>
 <table border=1 width="1000">
 	    <tr align="center">
-        <td><input type="submit" value="Добавить" class="buttons" style="width:80px;"></td>
+        <td><input name="addn" type="submit" value="Добавить" class="buttons" style="width:80px;"></td>
 	    </tr>
 </table>
-</form></center>
+</form>
+</center>
 
 <?
 }

@@ -30,7 +30,9 @@ if ($_GET[id])
     include ($_SERVER['DOCUMENT_ROOT'].'/templates/'.$skin.'/fullnews.tpl');
 	echo '<div align="center"><table style="font-size:12px;" width="95%" border=0 CELLPADDING=10 CELLSPACING=0><tr><td>';
 	echo '<div id="nwhead"><div style="float:left;font-size:16px;"><b>'.htmlspecialchars($fullnews[NAME]).'</b></div><div style="float:right;font-size:14px;">Дата добавления: '.htmlspecialchars($fullnews[stamp]).'</div></div>';
-	echo '<div id="nwcont"><img src="'.htmlspecialchars($fullnews[IMG]).'" alt="'.htmlspecialchars($fullnews[NAME]).'" /><br />'.$fullnews[TEXT].'</div>';
+	echo '<div id="nwcont">';
+	if ($fullnews[IMG] != NULL){ echo '<img src="'.htmlspecialchars($fullnews[IMG]).'" alt="'.htmlspecialchars($fullnews[NAME]).'" />'; }
+	echo '<br />'.$fullnews[TEXT].'</div>';
 	echo '</td></tr></table></div>';
     include ($_SERVER['DOCUMENT_ROOT'].'/templates/'.$skin.'/footer.tpl');
 	}

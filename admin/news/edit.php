@@ -1,5 +1,4 @@
 <? define('RZ_Engine', true);
-set_magic_quotes_runtime(0);
 /*************************************************
 Copyright 2012 © ZeTRiX zetlog.ru - Evgeny
 **************************************************
@@ -20,6 +19,7 @@ This file is part of RZ_Engine. RZ_Engine is a simple CMS (Content Management Sy
 **************************************************/
 session_start();
 if (isset($_SESSION['connect'])) {
+
 include ($_SERVER['DOCUMENT_ROOT'].'/engine/dbconfig.php');
 $id=mysql_real_escape_string($_GET[id]); 
 
@@ -84,8 +84,7 @@ $editsql=mysql_fetch_array(mysql_query("SELECT `NAME`,`SHORTTEXT`,`TEXT`,`IMG`
 </table>
 </form></center>
 
-<? }
-else
-{
+<? 
+} else {
 header('Location: /admin/login.php');
 } ?>

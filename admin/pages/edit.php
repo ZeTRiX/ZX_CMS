@@ -1,5 +1,4 @@
 <? define('RZ_Engine', true);
-set_magic_quotes_runtime(0);
 /*************************************************
 Copyright 2012 © ZeTRiX zetlog.ru - Evgeny
 **************************************************
@@ -18,7 +17,7 @@ This file is part of RZ_Engine. RZ_Engine is a simple CMS (Content Management Sy
     You should have received a copy of the GNU General Public License
     along with RZ_Engine.  If not, see <http://www.gnu.org/licenses/>.
 **************************************************/
-session_start(); 
+session_start();
 if (isset($_SESSION['connect'])) {
 include ($_SERVER['DOCUMENT_ROOT'].'/engine/dbconfig.php');
 $id=mysql_real_escape_string($_GET[id]);
@@ -31,7 +30,7 @@ $id=mysql_real_escape_string($_GET[id]);
     $e_description=mysql_real_escape_string($_POST[edit_description]); 
     $e_keywords=mysql_real_escape_string($_POST[edit_keywords]);
 
-if ($_POST) {	
+if (isset($_POST['submit'])) {
 	if ($e_name != NULL) {
      $pageedit=mysql_query("UPDATE `rze_structure` SET 
 						   `NAME`='".$e_name."', 
@@ -103,7 +102,7 @@ $editsql=mysql_fetch_array(mysql_query("SELECT * FROM `rze_structure` WHERE id="
 		<tr><td colspan="2"><div class="unterline"></div></td></tr></table>
 <table border=1 width="1000">
 	    <tr align="center">
-        <td><input type="submit" value="Сохранить" class="buttons" style="width:80px;"></td>
+        <td><input name="submit" type="submit" value="Сохранить" class="buttons" style="width:80px;"></td>
 	    </tr>
 </table>
 </form></center>
