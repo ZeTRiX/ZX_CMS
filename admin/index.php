@@ -36,7 +36,7 @@ $file=fopen('dizconfig.php','w+');
 $str = "<?\$skin=\"".$diz."\";?>";
   if ( !$file )
   {
-    echo('Ошибка открытия файла');
+    echo('Ошибка Записи');
   }
   else
   {
@@ -48,9 +48,9 @@ include ($_SERVER['DOCUMENT_ROOT'].'/admin/dizconfig.php');
 ?>
 
 <br/><table align="center" cellpadding=5 cellspacing=1 width=90%>
-<tr bgcolor=#545166>
+<tr bgcolor=#565366>
 <td valign=top width=180>Смена шаблона:</td>
- <td valign=top><center>
+<td valign=top><center>
 <form method="post" action="index.php"> 
 <select name="diz">
 <?
@@ -67,9 +67,12 @@ $handle = @opendir($path) or die("Невозможно открыть $path");
     closedir($handle);
 ?>
 </select>
-<input name="submit" type=submit value="Сменить">
+<input name="submit" type=submit value="Сменить" />
 </form>
-</center></td></tr></table>
+</center></td></tr>
+<tr bgcolor=#565366>
+<td valign=top width=180>Сократить ссылку:</td>
+<td valign=top><center><? include ($_SERVER['DOCUMENT_ROOT'].'/admin/shorter.php'); ?></center></td></tr></table>
 <br /><br />Текущая дата: <b><? echo date('Y-m-d') ?></b> и время: <b><? echo date('H:i:s') ?></b><br/>
 
 <? include ($_SERVER['DOCUMENT_ROOT'].'/admin/skin/default/footer.tpl');

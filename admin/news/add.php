@@ -78,8 +78,8 @@ if (move_uploaded_file($_FILES['n_IMG']['tmp_name'], $uploaddir.$randz.'_'.$_FIL
 	  <tr>
       <td height="29" style="padding-left:5px;"><b>Картинки для новости (загружать перед добавлнием текст):</b></td>
       <td>
-	  <input type="hidden" name="MAX_FILE_SIZE" value="3000000">
-      <input type="file" name="n_IMG"><br>
+	  <input type="hidden" name="MAX_FILE_SIZE" value="3000000" />
+      <input type="file" name="n_IMG" /><br>
       </td>
     </tr>
 </table>

@@ -7,4 +7,4 @@
 </nav>
 </div>
 <div id="ctr_cont">
-<div align="center"><? f_news(); ?></divs>
+<div align="center"><? f_news(); ?></div>
