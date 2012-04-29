@@ -1,3 +1,6 @@
+<?
+	define('INST_DIR', dirname (__FILE__));
+?>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -204,7 +207,8 @@ echo "<span style=\"color:green;\">OK</span></b><br />\n";
 
 echo "<b>Создаю конфигурационный файл... ";
 
-$confinfo="<? if(!defined('RZ_Engine')) {die(\"Don't Hack! That's not good =) \");}
+$confinfo=<<<HTML
+<? if(!defined('RZ_Engine')) {die(\"Don't Hack! That's not good =) \");}
 /*************************************************
 Copyright 2012 © ZeTRiX zetlog.ru - Evgeny
 **************************************************
@@ -237,9 +241,10 @@ mysql_select_db(\$dbname);
 mysql_query (\"SET NAMES utf8\");
 mysql_query (\"set character_set_client='utf8'\");
 mysql_query (\"set character_set_results='utf8'\");
-mysql_query (\"set collation_connection='utf8_general_ci'\"); ?>";
+mysql_query (\"set collation_connection='utf8_general_ci'\"); ?>
+HTML;
 
-$con_file = fopen($_SERVER['DOCUMENT_ROOT'].'/engine/dbconfig.php', "w+") or die("Извините, но невозможно создать файл <b>dbconfig.php</b>.<br />Проверьте права доступа!");
+$con_file = fopen('./dbconfig.php', "w+") or die("Извините, но невозможно создать файл <b>dbconfig.php</b>.<br />Проверьте права доступа!");
 fwrite($con_file, $confinfo);
 fclose($con_file);
 echo "<span style=\"color:green;\">OK</span></b><br />\n";
