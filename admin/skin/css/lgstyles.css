@@ -1,0 +1,33 @@
+        table {background-position: top center; background-repeat: no-repeat; -moz-border-radius-bottomleft: 10px; -moz-border-radius-bottomright: 10px;}
+        table.not-foldable {border: 1px solid #e6e6e6; border-top: none;}
+        .topimg {margin: 0 auto; height: 53px; background: url(../images/login_top.jpg) no-repeat top; width: 200px;}
+        h1 {padding-top: 55px; letter-spacing: -1px; margin: 0; font-size: 26px !important; clear: both;}
+        p {padding: 0 0 15px 0; margin: 0;}
+        td input {background: url(../images/bg_intput.png) repeat-x top; border: 1px solid #a7a7a7; margin: 5px 0 5px 10px;}
+                td input[type="checkbox"] {border: none; background: none;}
+                td input[type="text"], td input[type="password"] {background: url(../images/bg_intput.png) repeat-x top; border: 1px solid #a7a7a7; padding: 10px; font-size: 15px; font-weight: bold; width: 250px; color: #666; -moz-border-radius: 5px; border-radius: 5px; -webkit-border-radius: 5px;}
+                td input[type="text"]:focus , td input[type="password"]:focus  {border: 1px solid #DFCA88;}
+                form hr {display: none;}
+
+                input[type="submit"] {background: url(../images/btn_login.png) no-repeat top; width: 208px; height: 46px; border: none; color: #fff; display: block; margin: 0 auto 10px auto; font-weight: bold; font-size: 15px; text-shadow: 1px 1px 1px #777; padding: 0; text-align: center;}
+                input[type="submit"]:hover {background: url(../images/btn_login.png) 0 -46px; cursor: pointer;}
+
+                /* Captcha */
+
+                #captchabox {width: 90%; border-top: 1px solid #e7e7e7; border-bottom: 1px solid #e7e7e7; margin: 0 auto; padding: 10px 10px 0 10px; text-align: left; overflow: auto; background: url(../images/bg_intput.png) repeat-x top;}
+                        #captchabox a {color: #666; font-size: 11px;}
+                                #captchabox a:hover {color: #999;}
+                        #captchabox p img {float: left; padding-right: 3px;}
+                #captchabox input {background: url(../images/bg_intput.png) repeat-x top; border: 1px solid #a7a7a7; padding: 8px; font-size: 15px; font-weight: bold; width: 150px; color: #666; -moz-border-radius: 5px; border-radius: 5px; -webkit-border-radius: 5px; float: left; margin: 0;}
+                        #captchabox input:focus {border: 1px solid #DFCA88;}
+
+  .ftpinfopopup {width: 583px; border: 2px solid #CCC; background: white; padding: 15px; font-family: Arial, Helvetica, sans-serif; overflow: auto;}
+  .ftpinfopopup h2 {font-size: 35px; letter-spacing: -1px; margin: 0; padding: 0; color:#666;}
+  .ftpinfopopup p {line-height: 1.8em; color: #666; font-size: 12px; margin: 0; margin-top: 1em; padding: 0;}
+  .ftpinfopopup img {float: left; border: none;}
+  .ftpinfopopup .closebtn {float: right; clear: both; padding: 0;}
+  .ftpinfopopup .popright {width: 510px; float: right;}
+  input[type="radio"] {border: none !important;}
+  table#top-table {background: url("../images/login_panel_gradient.jpg") top center no-repeat;}
+  a {color: #666;}
+  a:hover {color: #333;}

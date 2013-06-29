@@ -1,0 +1,107 @@
+
+						</div>
+					</article>
+					<!-- /Data block -->
+					
+				</div>
+
+				
+				
+				<div class="alert alert-inverse">
+					<button class="close" type="button" data-dismiss="alert">?</button>
+					<strong>Black alert box! </strong>Переходи на тёмную сторону, у нас печеньки и вафельки!
+				</div>
+				
+			</div>
+			<!-- /Right (content) side -->
+			
+		</section>
+		<!-- /Main page container -->
+		
+		<!-- Main page footer -->
+		<footer class="container">
+			<p>ZX CMS admin panel - built by <a href="https://github.com/ZeTRiX/">ZeTRiX</a> - partly designed by <a href="http://www.walkingpixels.com/">Walking Pixels</a>.</p>
+			<ul>
+				<li><a href="/admin/" class="">ПУ</a></li>
+				<li><a href="/" class="">На сайт</a></li>
+				<li><a href="https://vk.com/" class="">Посидеть Вконтакте</a></li>
+			</ul>
+			<a href="#top" class="btn btn-primary btn-flat pull-right">Вверх &uarr;</a>
+		</footer>
+		<!-- /Main page footer -->
+		
+		<!-- Scripts -->
+		<script src="/admin/skin/js/navigation.js"></script>
+		<script src="/admin/skin/js/bootstrap/bootstrap-tooltip.js"></script>
+		<script src="/admin/skin/js/bootstrap/bootstrap-dropdown.js"></script>
+		<script src="/admin/skin/js/bootstrap/bootstrap-tab.js"></script>
+		<script src="/admin/skin/js/bootstrap/bootstrap-collapse.js"></script>
+		
+		<!-- jQuery jWYSIWYG -->
+		<script src="/admin/skin/js/plugins/jWYSIWYG/jquery.wysiwyg.js"></script>
+		
+		<script>
+			$(document).ready(function() {
+				
+				$('.sedittext').wysiwyg({
+					controls: {
+						bold          : { visible : true },
+						italic        : { visible : true },
+						underline     : { visible : true },
+						strikeThrough : { visible : true },
+						
+						justifyLeft   : { visible : true },
+						justifyCenter : { visible : true },
+						justifyRight  : { visible : true },
+						justifyFull   : { visible : true },
+			
+						indent  : { visible : true },
+						outdent : { visible : true },
+			
+						subscript   : { visible : true },
+						superscript : { visible : true },
+						
+						undo : { visible : true },
+						redo : { visible : true },
+						
+						insertOrderedList    : { visible : true },
+						insertUnorderedList  : { visible : true },
+						insertHorizontalRule : { visible : true },
+						
+						cut   : { visible : true },
+						copy  : { visible : true },
+						paste : { visible : true }
+					},
+					events: {
+						click: function(event) {
+							if ($("#click-inform:checked").length > 0) {
+								event.preventDefault();
+								alert("You have clicked jWysiwyg content!");
+							}
+						}
+					}
+				});
+				
+			});
+		</script>
+		
+		<!-- Block TODO list -->
+		<script>
+			$(document).ready(function() {
+				
+				$('.todo-block input[type="checkbox"]').click(function(){
+					$(this).closest('tr').toggleClass('done');
+				});
+				$('.todo-block input[type="checkbox"]:checked').closest('tr').addClass('done');
+				
+			});
+		</script>
+		
+		<!-- jQuery Visualize -->
+		<!--[if lte IE 8]>
+			<script language="javascript" type="text/javascript" src="/admin/skin/js/plugins/visualize/excanvas.js"></script>
+		<![endif]-->
+		<script src="/admin/skin/js/plugins/visualize/jquery.visualize.min.js"></script>
+		
+	</body>
+</html>

@@ -1,0 +1,15 @@
+    <li>
+        <a href="/">Главная</a>
+    </li>
+    <li>
+        <a href="/about/">О Нас</a>
+    </li>
+    <li>
+        <a href="#">Категория #1</a>
+        <ul class="cbp-tm-submenu">
+            <li><a href="/" class="cbp-tm-icon-article">Подменю #1</a></li>
+            <li><a href="/" class="cbp-tm-icon-cog">Подменю #2</a></li>
+            <li><a href="/" class="cbp-tm-icon-mail">Подменю #3</a></li>
+            <li><a href="/" class="cbp-tm-icon-contract">Подменю #4</a></li>
+        </ul>
+    </li>

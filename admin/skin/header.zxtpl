@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<!--[if IE 7]>    <html class="no-js ie7 ie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 ie" lang="en"> <![endif]-->
+<!--[if IE 9]>    <html class="no-js ie9 ie" lang="en"> <![endif]-->
+<!--[if gt IE 9]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+	<head>
+		<meta charset="utf-8">
+		<title>Панель управления - ZX CMS</title>
+		<meta name="description" content="">
+		<meta name="author" content="ZeTRiX">
+		<meta name="robots" content="index, follow">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		<!-- jQuery Visualize Styles -->
+		<link rel='stylesheet' type='text/css' href='/admin/skin/css/plugins/jquery.visualize.css'>
+		
+		<!-- CSS styles -->
+		<link rel='stylesheet' type='text/css' href='/admin/skin/css/main.css'>
+		<link rel='stylesheet' type='text/css' href='/admin/skin/css/modal.css'>
+		
+		<!-- Bootstrap wysihtml5 Styles -->
+		<link rel='stylesheet' type='text/css' href='/admin/skin/css/plugins/bootstrap-wysihtml5.css'>
+		
+		<!-- jQuery jWYSIWYG Styles -->
+		<link rel='stylesheet' type='text/css' href='/admin/skin/css/plugins/jquery.jwysiwyg.css'>
+		
+		<!-- Fav and touch icons -->
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+		<link rel="icon" href="/favicon.ico" type="image/x-icon">
+		
+		<!-- JS Libs -->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script>window.jQuery || document.write('<script src="/admin/skin/js/libs/jquery.js"><\/script>')</script>
+		<script src="/admin/skin/js/libs/modernizr.js"></script>
+		<script src="/admin/skin/js/libs/selectivizr.js"></script>
+		
+		<script>
+			$(document).ready(function(){
+				
+				// Tooltips
+				$('[title]').tooltip({
+					placement: 'top'
+				});
+				
+			});
+		</script>
+	</head>
+	<body>
+		
+		<!-- Main page header -->
+		<header class="container">
+		
+			<!-- Main page logo -->
+			<h1><a href="/admin/" class="brand">ZX CMS</a></h1>
+			
+			<!-- Main page headline -->
+			<p>Просто няшная панель ^_^</p>
+			
+			<!-- Alternative navigation -->
+			<nav>
+				<ul>
+					<li>
+						<form class="nav-search">
+							<input type="text" placeholder="Поиск&hellip;">
+						</form>
+					</li>
+					<li><a href="/">На сайт</a></li>
+					<li><a href="/admin/?a=exit">Выйти</a></li>
+				</ul>
+			</nav>
+			<!-- /Alternative navigation -->
+			
+		</header>
+		<!-- /Main page header -->
+		
+		<!-- Main page container -->
+		<section class="container" role="main">
+		
+			<!-- Left (navigation) side -->
+			<div class="navigation-block">
+			
+				<!-- User profile -->
+				<section class="user-profile">
+					<figure class="clearfix">
+						<img alt="motivator" src="http://placekitten.com/100/100">
+						<figcaption>
+							<strong><a href="http://placeboobs.com/800/480" class="">Няшные котики</a></strong>
+							<!--em>маленькая фотка котЭ</em-->
+						</figcaption>
+					</figure>
+				</section>
+				<!-- /User profile -->
+				
+				<!-- Sample left search bar -->
+				<form class="side-search">
+					<input type="text" class="rounded" placeholder="Поиск...">
+				</form>
+				<!-- /Sample left search bar -->
+				<!-- Main navigation -->
+				<nav class="main-navigation" role="navigation">
+					<ul>
+						<li <? if (defined('pages')) { echo "class=\"current\""; } ?> ><a href="/admin/" class="no-submenu"><span class="icon-home"></span>Страницы сайта</a></li>
+						<li <? if (defined('news')) { echo "class=\"current\""; } ?>><a href="/admin/anews/" class="no-submenu"><span class="icon-tasks"></span>Новости</a></li>
+						<li <? if (defined('menu')) { echo "class=\"current\""; } ?>><a href="/admin/amenu/" class="no-submenu"><span class="icon-tasks"></span>Меню сайта</a></li>
+					</ul>
+				</nav>
+				<!-- /Main navigation -->
+				
+				<!-- Sample side note -->
+				<section class="side-note">
+					<div class="side-note-container">
+						<h2>TO-DO</h2>
+						<p>Сделать установочный файлик!</p>
+					</div>
+					<div class="side-note-bottom"></div>
+				</section>
+				<!-- /Sample side note -->
+				
+			</div>
+			<!-- Left (navigation) side -->
+			
+			<!-- Right (content) side -->
+			<div class="content-block" role="main">
+			
+				<!-- Page header -->
+				<article class="page-header">
+				
+					<h1>Панель управления ZX CMS</h1>
+				</article>
+				<!-- /Page header -->
+				
+				<!-- Grid row -->
+				<div class="row">
+				
+					<!-- Data block -->
+					<article class="span12 data-block">
+						<div class="data-container">

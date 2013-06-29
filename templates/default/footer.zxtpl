@@ -1,0 +1,8 @@
+
+</div>
+</center>
+		<script src="<? echo TPL_SMART_DIR . $skin; ?>/js/cbpTooltipMenu.min.js"></script>
+		<script>
+			var menu = new cbpTooltipMenu( document.getElementById( 'cbp-tm-menu' ) );
+		</script>
+</body></html>
