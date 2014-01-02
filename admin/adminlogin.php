@@ -1,4 +1,6 @@
 <?php
+define( 'ZX_CMS_ADM', true );
+define( 'ZX_CMS', true );
 define( 'ABSPATH', $_SERVER['DOCUMENT_ROOT'] . '/' );
 
 if ( file_exists( ABSPATH . 'engine/conf.php') ) {
@@ -11,7 +13,7 @@ if ( file_exists( ABSPATH . 'engine/conf.php') ) {
 
 	if (isset($login) && isset($pass)) {
 		if (($login != NULL) && ($pass != NULL)) {
-			if ((ADMIN == $login) && (AUTH_KEY == sha1($pass))) {
+			if ((ADMIN_LGN == $login) && (AUTH_KEY == sha1($pass))) {
 				$_SESSION['connect'] = 'true';
 				header('Location: adminindex.php');
 			} else {

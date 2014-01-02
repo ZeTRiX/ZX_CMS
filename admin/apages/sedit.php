@@ -10,17 +10,17 @@ if (isset($_SESSION['connect'])) {
 	if ( file_exists( ABSPATH . 'engine/conf.php') ) {
 		require_once( ABSPATH . 'engine/conf.php' );
 			
-		$id				=	mysql_real_escape_string(intval(@$_GET[id]));
-		$surlid			=	mysql_real_escape_string($_POST[surl]);
-		$stitle			=	mysql_real_escape_string($_POST[sname]);
-		$sdef			=	mysql_real_escape_string($_POST[sact]);
-		$stext			=	mysql_real_escape_string($_POST[stext]);
-		// $sdescription	=	mysql_real_escape_string($_POST[edit_description]);
-		// $skwords		=	mysql_real_escape_string($_POST[edit_keywords]);
+		$id				=	$mysqli->real_escape_string(intval(@$_GET[id]));
+		$surlid			=	$mysqli->real_escape_string($_POST[surl]);
+		$stitle			=	$mysqli->real_escape_string($_POST[sname]);
+		$sdef			=	$mysqli->real_escape_string($_POST[sact]);
+		$stext			=	$mysqli->real_escape_string($_POST[stext]);
+		// $sdescription	=	$mysqli->real_escape_string($_POST[edit_description]);
+		// $skwords		=	$mysqli->real_escape_string($_POST[edit_keywords]);
 	
 		if (isset($_POST['submit'])) {
 			if (($surlid != NULL) && ($stitle != NULL) && ($stext != NULL)) {
-				$sesecond	=	mysql_query("UPDATE `zx_pages` SET `url`='".$surlid."',`name`='".$stitle."',`text`='".$stext."',`def`='".$sdef."' WHERE `id`='".$id."'"); 
+				$sesecond	=	$mysqli->query("UPDATE `zx_pages` SET `url`='".$surlid."',`name`='".$stitle."',`text`='".$stext."',`def`='".$sdef."' WHERE `id`='".$id."'"); 
 				echo '<script>alert("Страница успешно изменена!");</script>';
 				$redirurl = '/admin/';
 				echo "<script language=\"JavaScript\">\n";
@@ -37,7 +37,8 @@ if (isset($_SESSION['connect'])) {
 			<ul class=\"data-header-actions\"><li><a class=\"btn btn-alt btn-inverse\" href=\"/admin/?a=add\">Добавить страницу</a></li></ul>
 			</header><section>";
 			
-		$sefirst	=	mysql_fetch_array(mysql_query("SELECT `url`, `name`, `text`, `def` FROM `zx_pages` WHERE id=".$id.""));
+		$result	=	$mysqli->query("SELECT `url`, `name`, `text`, `def` FROM `zx_pages` WHERE id=".$id."");
+		$sefirst	=	$result->fetch_array();
 ?>
 											<form method="post" class="form-horizontal" name="sedit" action="sedit.php<? echo "?id=".$id; ?>" >
 												<fieldset>

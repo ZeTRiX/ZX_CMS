@@ -1,24 +1,23 @@
 <?php
 if( !defined('ZX_CMS') ) { die('Don\'t hack us, please! That\'s not good!'); }
 
-function meta_head() {
-	global $pages;
+function meta_head($pages_arr) {
 	$charset	=	"UTF-8";
 	echo '<meta http-equiv="content-type" content="text/html; charset='.$charset.'" />';
-	echo '<title>'.$pages['name'].'</title>';
-	echo '<meta name="keywords" content="'.$pages['mkwords'].'" />';
-	echo '<meta name="description" content="'.$pages['mdesc'].'" />';
+	echo '<title>'.$pages_arr['name'].'</title>';
+	echo '<meta name="keywords" content="'.$pages_arr['mkwords'].'" />';
+	echo '<meta name="description" content="'.$pages_arr['mdesc'].'" />';
 }
 
-function f_news() {
+function f_news($mysqli) {
 	// Количество новостей на странице
 	$on_page = 6;
-
-	// Получаем количество записей из таблицы новостей
-	$query = "SELECT COUNT(*) FROM `zx_news`";
-	$res = mysql_query($query);
-	$count_records = mysql_fetch_row($res);
-	$count_records = $count_records[0];
+	
+	$count_records = 0;
+	if ($res = $mysqli->query("SELECT * FROM `zx_news` ORDER BY `id`")) {
+		$count_records = $res->num_rows;
+		$res->close();
+	}
 
 	// Получаем количество страниц
 	// Делим количество записей на количество новостей на странице
@@ -45,14 +44,13 @@ function f_news() {
 	$start_from = ($current_page - 1) * $on_page;
 
 	// Формат оператора LIMIT <ЗАПИСЬ ОТ>, <КОЛИЧЕСТВО ЗАПИСЕЙ>
-	$query = "SELECT `id`, `date`, `title`, `stext` FROM `zx_news` WHERE `def`='Y' ORDER BY `id` DESC LIMIT $start_from, $on_page";
-	$res = mysql_query($query);
+	$res = $mysqli->query("SELECT `id`, `date`, `title`, `stext` FROM `zx_news` WHERE `def`='Y' ORDER BY `id` DESC LIMIT $start_from, $on_page");
 	if (!$res) { echo "<p>Запрос новостей завершился неудачей.<br /><strong>Код ошибки:</strong></p>";
-	exit (mysql_error()); }
+	exit ($mysqli->error); }
 
 	// Вывод результатов
 	echo '<ul class="cbp_tmtimeline">';
-	while ($row = mysql_fetch_assoc($res))
+	while ($row = $res->fetch_assoc())
 	{
 		echo '<li>';
 		$timestamp = explode(" ", $row['date']);

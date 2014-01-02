@@ -12,13 +12,13 @@ if (isset($_SESSION['connect'])) {
 	if ( file_exists( ABSPATH . 'engine/conf.php') ) {
 		require_once( ABSPATH . 'engine/conf.php' );
 		if ($_GET) {
-			$act	=	mysql_real_escape_string(@$_GET[a]);
+			$act	=	$mysqli->real_escape_string(@$_GET[a]);
 			// $act		=	htmlspecialchars($act, ENT_QUOTES, "utf-8");
 			// $warn[0] = 	"UPDATE";
 			// $warn[1] = 	"SELECT";
 			// $warn[2] = 	"DELETE";
 			// $act		=	str_replace($warn, "", $action);
-			$id		=	mysql_real_escape_string(intval(@$_GET[id]));
+			$id		=	$mysqli->real_escape_string(intval(@$_GET[id]));
 
 			if ($act == 'exit') {
 				destroySession();
@@ -27,30 +27,14 @@ if (isset($_SESSION['connect'])) {
 			}
 
 			if (($act == 'del') && ($id != NULL)) {
-				$sqldel	=	mysql_query("DELETE FROM `zx_pages` WHERE id='".$id."'");
-				echo "<script type=\"text/javascript\">
-				$('.pgc".$id."').click(function() {
-					$('.pgc".$id."').slideUp('slow', function() {
-						$(this).remove();
-					});
-				});
-				</script>";				
-				// echo '<script>alert("Страница успешно удалена!");</script>';
-				// $redirurl = '/admin/';
-				// echo "<script language=\"JavaScript\">\n";
-				// echo "<!-- \n\n";
-				// echo "function redirect() { window.location = \"" . $redirurl . "\"; }\n";
-				// echo "timer = setTimeout('redirect()', '" . ($seconds*1) . "');\n\n";
-				// echo "-->\n";
-				// echo "</script>\n";
+				$sqldel	=	$mysqli->query("DELETE FROM `zx_pages` WHERE id='".$id."'");
 			}
 			
 			if ($act == 'add') {
-				$sqlins	=	mysql_query("INSERT INTO `zx_pages` (`url`, `name`, `text`, `mdesc`, `mkwords`, `def`) VALUES ('/".rand(99, 999999)."/', 'Sample', 'Sample', 'Sample', 'Sample', 'N')");
+				$sqlins	=	$mysqli->query("INSERT INTO `zx_pages` (`url`, `name`, `text`, `mdesc`, `mkwords`, `def`) VALUES ('/".rand(99, 999999)."/', 'Sample', 'Sample', 'Sample', 'Sample', 'N')");
 			}
 		}
 
-	
 		require ( ATPL_DIR .'/header'. $tpl_ext);
 		echo "<header><h2><span class=\"icon-star\"></span> Страницы сайта</h2>
 			<ul class=\"data-header-actions\"><li><a class=\"btn btn-alt btn-inverse\" href=\"?a=add\">Добавить страницу</a></li></ul>
@@ -58,21 +42,22 @@ if (isset($_SESSION['connect'])) {
 			
 			
 			echo '<table class="table table-stripped"><tbody>'; 
-			$sql	=	mysql_query("SELECT * FROM `zx_pages`"); 
-			while ($res = mysql_fetch_array($sql)) { 
+			$sql	=	$mysqli->query("SELECT * FROM `zx_pages`") or die($mysqli->error); 
+			while ($res = $sql->fetch_array()) { 
 				echo '<tr class="pgc'.$res[id].'"><td>'; 
 				echo $res[id].'</td><td><a href="'.$res[url].'" >'.$res[name].'</a> 
 					<br>'.$res[url].'
 					</td>
 					<td><center>[<a href="apages/sedit.php?id='.$res[id].'" >редактировать</a>]</center></td>
-					<td><center>[<a href="#openModal'.$res[id].'">удалить</a>]</center></td>';
+					<td><center>[<a href="#om'.$res[id].'">удалить</a>]</center></td>';
 				echo '</td></tr>';
 				/* Модальное окошко подтверждения удаления */
-				echo '<div id="openModal'.$res[id].'" class="mDiag">
+				echo '<div id="om'.$res[id].'" class="mDiag">
 					<div><a href="#close" title="Закрыть" class="close">X</a>
 					<div align="center"><h2>Подтверждение удаления</h2>
 					<p>Вы уверены, что хотите удалить эту страницу?</p>
-					<p><a href="?a=del&id='.$res[id].'">Да</a> | <a href="#close">Нет</a></p>
+					<p><input type="button" id="mDbt" value="Да" onclick="location.href=\'?a=del&id='.$res[id].'\';" />
+					<input type="button" id="mDbt" value="Нет" onclick="location.href=\'#close\';" /></p>
 					</div></div></div>';
 			}
 			echo '</tbody></table>';

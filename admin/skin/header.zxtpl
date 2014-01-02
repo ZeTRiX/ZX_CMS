@@ -82,11 +82,7 @@
 				<!-- User profile -->
 				<section class="user-profile">
 					<figure class="clearfix">
-						<img alt="motivator" src="http://placekitten.com/100/100">
-						<figcaption>
-							<strong><a href="http://placeboobs.com/800/480" class="">Няшные котики</a></strong>
-							<!--em>маленькая фотка котЭ</em-->
-						</figcaption>
+							<strong><a href="#">Добро пожаловать в Панель управления!</a></strong>
 					</figure>
 				</section>
 				<!-- /User profile -->
@@ -106,11 +102,41 @@
 				</nav>
 				<!-- /Main navigation -->
 				
+				<script type="text/javascript">
+				 function TDbClick ()
+				 {
+					 var mdiv = document.getElementById("ToDoMain");
+					 var errdiv = document.getElementById("ErrRes");
+					 var button = document.getElementById("ToDoButton");
+					 
+					 if (mdiv.contentEditable == "true")
+					 {
+						 mdiv.contentEditable = "false";						 
+						 $.post('todo.php', 'task=' + mdiv.innerHTML, function(data) {
+							if (data == "OK") {
+								/* All Ok */
+							} else {
+								errdiv.innerHTML = "<br /><br />" + data;
+								errdiv.style.display = "inline";
+							}
+						 });
+						 button.value = "Редактировать";
+					 } else {
+						 mdiv.contentEditable = "true";
+						 errdiv.style.display = "none";
+						 button.value = "Сохранить";
+					 }
+				 }
+				 </script>
 				<!-- Sample side note -->
 				<section class="side-note">
 					<div class="side-note-container">
-						<h2>TO-DO</h2>
-						<p>Сделать установочный файлик!</p>
+						<h2><b>Что нужно сделать?</b></h2>
+						<div id="ToDoMain" contenteditable="false">
+							<?php require ( ABSPATH . 'admin/skin/todo'. $tpl_ext); ?>
+						</div>
+						<br /><input type="button" class="btn btn-alt btn-inverse" id="ToDoButton" onclick="TDbClick();" value="Редактировать" />
+						<div id="ErrRes" style="display: none; color:red; font-size: 14px;"></div>
 					</div>
 					<div class="side-note-bottom"></div>
 				</section>

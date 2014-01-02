@@ -1,5 +1,7 @@
 AddDefaultCharset utf-8
 
+DirectoryIndex index.php
+
 ErrorDocument 401 default
 ErrorDocument 403 default
 ErrorDocument 404 /

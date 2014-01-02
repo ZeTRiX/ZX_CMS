@@ -1,6 +1,6 @@
 <html>
 <head>
-		<? meta_head(); ?>
+		<? meta_head($pages_arr); ?>
 		<link rel="stylesheet" type="text/css" href="<? echo TPL_SMART_DIR . $skin; ?>/css/default.css" />
 		<link rel="stylesheet" type="text/css" href="<? echo TPL_SMART_DIR . $skin; ?>/css/component.css" />
 		<script src="<? echo TPL_SMART_DIR . $skin; ?>/js/modernizr.custom.js"></script>

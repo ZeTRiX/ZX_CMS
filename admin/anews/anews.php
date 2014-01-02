@@ -9,16 +9,16 @@ if (isset($_SESSION['connect'])) {
 	if ( file_exists( ABSPATH . 'engine/conf.php') ) {
 		require_once( ABSPATH . 'engine/conf.php' );
 		if ($_GET) {
-			$act	=	mysql_real_escape_string(@$_GET[a]);
+			$act	=	$mysqli->real_escape_string(@$_GET[a]);
 			// $act		=	htmlspecialchars($act, ENT_QUOTES, "utf-8");
 			// $warn[0] = 	"UPDATE";
 			// $warn[1] = 	"SELECT";
 			// $warn[2] = 	"DELETE";
 			// $act		=	str_replace($warn, "", $action);
-			$id		=	mysql_real_escape_string(intval(@$_GET[id]));
+			$id		=	$mysqli->real_escape_string(intval(@$_GET[id]));
 
 			if (($act == 'del') && ($id != NULL)) {
-				$sqldel	=	mysql_query("DELETE FROM `zx_news` WHERE id='".$id."'");
+				$sqldel	=	$mysqli->query("DELETE FROM `zx_news` WHERE id='".$id."'");
 				echo "<script type=\"text/javascript\">
 				$('.nws".$id."').click(function() {
 					$('.nws".$id."').slideUp('slow', function() {
@@ -29,7 +29,7 @@ if (isset($_SESSION['connect'])) {
 			}
 			
 			if ($act == 'add') {
-				$sqlins	=	mysql_query("INSERT INTO `zx_news` (`title`, `stext`, `ftext`, `author`, `def`) VALUES ('News Name ".rand(99, 999999)."', 'Short Text', 'Full Text.', 'ZeTRiX', 'N')");
+				$sqlins	=	$mysqli->query("INSERT INTO `zx_news` (`title`, `stext`, `ftext`, `author`, `def`) VALUES ('News Name ".rand(99, 999999)."', 'Short Text', 'Full Text.', 'ZeTRiX', 'N')");
 			}
 		}
 
@@ -41,8 +41,8 @@ if (isset($_SESSION['connect'])) {
 			
 			//INSERT INTO `dbname`.`zx_news` (`id`, `title`, `stext`, `ftext`, `author`, `date`, `def`) VALUES (NULL, 'Тестовая новость', 'Короткий текст тестовой новости', 'Полный текст тестовой новости! Он должен быть длинее короткого.', 'ZeTRiX', CURRENT_TIMESTAMP, 'Y');
 			echo '<table class="table table-stripped"><tbody>'; 
-			$sql	=	mysql_query("SELECT * FROM `zx_news`"); 
-			while ($res = mysql_fetch_array($sql)) { 
+			$sql	=	$mysqli->query("SELECT * FROM `zx_news`"); 
+			while ($res = $sql->fetch_array()) { 
 				echo '<tr class="nws'.$res[id].'"><td>'; 
 				echo $res[id].'</td><td><a href="/news/?id='.$res[id].'" >'.$res[title].'</a> 
 					<br>'.$res[ndate].' 

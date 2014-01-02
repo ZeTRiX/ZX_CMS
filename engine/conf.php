@@ -1,30 +1,38 @@
 <?php
 if( !defined('ZX_CMS') ) { die('Don\'t hack us, please! That\'s not good!'); }
 
-/* Имя базы данных */
-define('DB_NAME', 'database');
-
-/* Имя пользователя MySQL */
-define('DB_USER', 'root');
-
-/* Пароль к базе данных MySQL */
-define('DB_PASSWORD', 'password');
 
 /* Имя сервера MySQL */
 define('DB_HOST', 'localhost');
 
+/* Имя пользователя MySQL */
+define('DB_USER', 'dbusername');
+
+/* Пароль к базе данных MySQL */
+define('DB_PASSWORD', 'dbpassword');
+
+/* Имя базы данных */
+define('DB_NAME', 'dbname');
+
 /* Кодировка базы данных для создания таблиц. */
 define('DB_CHARSET', 'utf8');
 
-define('AUTH_KEY', 'впишите сюда sha1() хэш пароля админа');
-define('ADMIN', 'впишите сюда ник админа');
+define('ADMIN_LGN', 'тут логин админа');
+define('AUTH_KEY', sha1('тут пароль'));
+// define('AUTH_KEY', 'тут sha1 хэш пароля админа (замутить тут: http://sha1hash.com)');
 
 /** Инициализирует переменные и подключает файлы. */
 require_once(dirname(__FILE__) . '/sett.php');
 
-mysql_connect(DB_HOST, DB_USER, DB_PASSWORD); 
-mysql_select_db(DB_NAME);
-mysql_query ("SET NAMES ". DB_CHARSET);
-mysql_query ("set character_set_client='" . DB_CHARSET . "'");
-mysql_query ("set character_set_results='" . DB_CHARSET . "'");
-mysql_query ("set collation_connection='" . DB_CHARSET . "_general_ci'");
+$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+
+/** Проверка подключения. */
+if (mysqli_connect_errno()) {
+    printf("Не удалось подключиться: %s\n", mysqli_connect_error());
+    exit();
+}
+
+$mysqli->query ("SET NAMES ". DB_CHARSET);
+$mysqli->query ("set character_set_client='" . DB_CHARSET . "'");
+$mysqli->query ("set character_set_results='" . DB_CHARSET . "'");
+$mysqli->query ("set collation_connection='" . DB_CHARSET . "_general_ci'");

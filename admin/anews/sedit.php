@@ -10,18 +10,18 @@ if (isset($_SESSION['connect'])) {
 	if ( file_exists( ABSPATH . 'engine/conf.php') ) {
 		require_once( ABSPATH . 'engine/conf.php' );
 			
-		$id				=	mysql_real_escape_string(intval(@$_GET[id]));
-		$stit			=	mysql_real_escape_string($_POST[stitle]);
-		$sat			=	mysql_real_escape_string($_POST[saut]);
-		$sdef			=	mysql_real_escape_string($_POST[sact]);
-		$stext			=	mysql_real_escape_string($_POST[stext]);
-		$ftext			=	mysql_real_escape_string($_POST[ftext]);
-		// $sdescription	=	mysql_real_escape_string($_POST[edit_description]);
-		// $skwords		=	mysql_real_escape_string($_POST[edit_keywords]);
+		$id				=	$mysqli->real_escape_string(intval(@$_GET[id]));
+		$stit			=	$mysqli->real_escape_string($_POST[stitle]);
+		$sat			=	$mysqli->real_escape_string($_POST[saut]);
+		$sdef			=	$mysqli->real_escape_string($_POST[sact]);
+		$stext			=	$mysqli->real_escape_string($_POST[stext]);
+		$ftext			=	$mysqli->real_escape_string($_POST[ftext]);
+		// $sdescription	=	$mysqli->real_escape_string($_POST[edit_description]);
+		// $skwords		=	$mysqli->real_escape_string($_POST[edit_keywords]);
 	
 		if (isset($_POST['submit'])) {
 			if (($stit != NULL) && ($sat != NULL) && ($stext != NULL)) {
-				$sesecond	=	mysql_query("UPDATE `zx_news` SET `title`='".$stit."',`stext`='".$stext."',`ftext`='".$ftext."',`author`='".$sat."',`def`='".$sdef."' WHERE `id`='".$id."'"); 
+				$sesecond	=	$mysqli->query("UPDATE `zx_news` SET `title`='".$stit."',`stext`='".$stext."',`ftext`='".$ftext."',`author`='".$sat."',`def`='".$sdef."' WHERE `id`='".$id."'"); 
 				echo '<script>alert("Страница успешно изменена!");</script>';
 				$redirurl = '/admin/anews/';
 				echo "<script language=\"JavaScript\">\n";
@@ -38,7 +38,8 @@ if (isset($_SESSION['connect'])) {
 			<ul class=\"data-header-actions\"><li><a class=\"btn btn-alt btn-inverse\" href=\"/admin/anews/?a=add\">Добавить страницу</a></li></ul>
 			</header><section>";
 			
-		$sefirst	=	mysql_fetch_array(mysql_query("SELECT `title`, `stext`, `ftext`, `author`, `def` FROM `zx_news` WHERE id=".$id.""));
+		$result		=	$mysqli->query("SELECT `title`, `stext`, `ftext`, `author`, `def` FROM `zx_news` WHERE id=".$id."");
+		$sefirst	=	$result->fetch_array();
 ?>
 											<form method="post" class="form-horizontal" name="sedit" action="sedit.php<? echo "?id=".$id; ?>" >
 												<fieldset>

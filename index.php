@@ -9,12 +9,14 @@ if ( file_exists( ABSPATH . 'engine/conf.php') ) {
 
 	$zx_urlexp	=	explode('?',$_SERVER['REQUEST_URI']);
 	$zx_murl	=	$zx_urlexp[0];
-	$pages		=	mysql_fetch_array(mysql_query("SELECT `id`, `url`, `name`, `text`, `mdesc`, `mkwords`, `def` FROM `zx_pages` WHERE def='Y' AND url='".$zx_murl."'"));
+	$pages		=	$mysqli->query("SELECT `id`, `url`, `name`, `text`, `mdesc`, `mkwords`, `def` FROM `zx_pages` WHERE def='Y' AND url='".$zx_murl."'");
+	$pages_arr	=	$pages->fetch_assoc();
 
-	if ( !$pages['id'] ) {
-		$pages	=	mysql_fetch_array(mysql_query("SELECT `id`, `url`, `name`, `text`, `mdesc`, `mkwords`, `def` FROM `zx_pages` WHERE def='Y' AND url='/404/'"));
+	if ( !$pages_arr['id'] ) {
+		$pages		=	$mysqli->query("SELECT `id`, `url`, `name`, `text`, `mdesc`, `mkwords`, `def` FROM `zx_pages` WHERE def='Y' AND url='/404/'");
+		$pages_arr	=	$pages->fetch_assoc();
 	}
-	if ($pages['id'] == 1){
+	if ($pages_arr['id'] == 1){
 		require ( TPL_DIR . $skin.'/header'. $tpl_ext);
 		require ( TPL_DIR . $skin.'/menu'. $tpl_ext);
 		require ( TPL_DIR . $skin.'/sidebar'. $tpl_ext);
@@ -27,7 +29,7 @@ if ( file_exists( ABSPATH . 'engine/conf.php') ) {
 		require ( TPL_DIR . $skin.'/menu'. $tpl_ext);
 		require ( TPL_DIR . $skin.'/sidebar'. $tpl_ext);
 		require ( TPL_DIR . $skin.'/content'. $tpl_ext);
-			echo '<div style="padding-bottom: 20px;">'.$pages['text'].'</div>';
+			echo '<div style="padding-bottom: 20px;">'.$pages_arr['text'].'</div>';
 		require ( TPL_DIR . $skin.'/footer'. $tpl_ext);
 	}
 
